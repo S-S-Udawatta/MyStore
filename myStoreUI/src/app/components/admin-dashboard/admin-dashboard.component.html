@@ -1,0 +1,175 @@
+<div class="navbar navbar-dark bg-primary shadow-sm ">
+
+  <div class="navbar-brand align-item-center d-flex logo " >
+    <i style="font-size: 40px; margin-top: 10px; margin-left: 10px" class="fa fa-shipping-fast"></i>
+    <strong style="font-size: 40px;" >Store</strong>
+  </div>
+
+  <div class="formGroup" style="position: absolute; right: 80px" >
+
+    <input type="text"  class="form-control" placeholder="Search Product" >
+
+  </div>
+
+  <button class="btn btn-primary mat-raised-button " style="margin-right: 5px" (click)="userLogout()">
+    log out
+  </button>
+
+</div>
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+  <li [ngbNavItem]="1">
+
+
+
+
+    <a class="tab" style="margin-left: 10px" ngbNavLink>Items</a>
+    <ng-template ngbNavContent>
+      <div class="container">
+        <div class="row">
+          <ng-container *ngFor="let item of productList">
+
+
+            <div class="card col-md-3 " >
+              <img src="{{item.thumbnail}}" style="margin-left: 15px; size: auto" alt="" >
+              <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch">{{item.name}}</h5>
+              <p>{{item.description}}</p>
+              <p><strong>Price : </strong>${{item.unitPrice}}</p>
+              <button class="btn btn-danger mat-raised-button" (click)="deleteItem(item.id)">Delete</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="2">
+    <a class="tab" ngbNavLink>Add</a>
+    <ng-template ngbNavContent>
+      <div class="main-outer">
+        <div class="inner">
+          <form [formGroup]="addItemGroup"  (ngSubmit)="addItem()">
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" formControlName="id" matInput class="form-control"  placeholder="Item ID">
+
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" formControlName="name" matInput class="form-control" placeholder="Item Name">
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" class="form-control" formControlName="description"matInput placeholder="Description">
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" class="form-control" formControlName="unitPrice" matInput placeholder="Unit Price">
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+
+                <input type="text" class="form-control" formControlName="category"  matInput placeholder="Category">
+
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" class="form-control" formControlName="tumbnail" matInput placeholder="Tumbnail">
+              </div>
+            </div>
+
+            <button class="btn btn-primary mat-raised-button" style="margin: 5px">Add Item</button>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="3">
+    <a class="tab" ngbNavLink>Update</a>
+    <ng-template ngbNavContent>
+      <div class="main-outer">
+        <div class="inner">
+          <form [formGroup]="updateItemGroup" (ngSubmit)="updateItem()">
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" formControlName="id" matInput class="form-control"  placeholder="Item ID">
+
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" formControlName="name" matInput class="form-control" placeholder="Item Name">
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" class="form-control" formControlName="description"matInput placeholder="Description">
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" class="form-control" formControlName="unitPrice" matInput placeholder="Unit Price">
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+
+                <input type="text" class="form-control" formControlName="category"  matInput placeholder="Category">
+
+              </div>
+            </div>
+
+            <div class="row" style="margin: 0">
+              <div class="col-12">
+                <input type="text" class="form-control" formControlName="tumbnail" matInput placeholder="Tumbnail">
+              </div>
+            </div>
+
+            <button class="btn btn-primary mat-raised-button" style="margin: 5px">Update Item</button>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="4">
+    <a class="tab" ngbNavLink>Customers</a>
+    <ng-template ngbNavContent>
+      <app-shoes></app-shoes>
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="5">
+    <a class="tab" ngbNavLink>Orders</a>
+    <ng-template ngbNavContent>
+    </ng-template>
+  </li>
+
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+
+
+
+
